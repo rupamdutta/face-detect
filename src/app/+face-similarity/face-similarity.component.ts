@@ -22,8 +22,10 @@ export class FaceSimilarityComponent implements OnInit {
   }
 
   async loadModels() {
+    this.progress = true;
     await faceapi.nets.faceRecognitionNet.loadFromUri(
       environment.baseHref + 'assets/models/face_recognition');
+    this.progress = false;
   }
 
   selectImage(filePicker) {
@@ -53,8 +55,8 @@ export class FaceSimilarityComponent implements OnInit {
   async evaluateFaces() {
     this.progress = true;
     const distance = faceapi.round(faceapi.euclideanDistance(this.descriptors.desc1, this.descriptors.desc2));
-    this.progress = false;
     this.facesMatched = distance <= this.threshold;
+    this.progress = false;
   }
 
   reset() {
