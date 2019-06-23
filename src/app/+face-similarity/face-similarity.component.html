@@ -1,0 +1,47 @@
+<div *ngIf="facesMatched===null">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="jumbotron p-4 text-center">
+        <h1 class="display-4">Original</h1>
+        <div class="d-flex align-items-center align-content-center">
+          <div class="image-box" (click)="selectImage(img1Select)">
+            <input #img1Select type="file" accept="image/*" hidden (change)="onImageSelect($event,'1',img1Select)" />
+            <img *ngIf="!!descriptors.url1" [src]="descriptors.url1">
+          </div>
+        </div>
+        <p class="lead">Tap to change</p>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="jumbotron p-4 text-center">
+        <h1 class="display-4">Current</h1>
+        <div class="d-flex align-items-center align-content-center">
+          <div class="image-box" (click)="selectImage(img2Select)">
+            <input #img2Select type="file" accept="image/*" hidden (change)="onImageSelect($event,'2',img2Select)" />
+            <img *ngIf="!!descriptors.url2" [src]="descriptors.url2">
+          </div>
+        </div>
+        <p class="lead">Tap to change</p>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-lg btn-primary w-100 mb-4" [disabled]="progress||!descriptors.url1||!descriptors.url2"
+    (click)="evaluateFaces()">Compare &
+    Validate</button>
+</div>
+<div *ngIf="facesMatched!==null">
+  <div class="d-flex flex-column align-items-center align-content-center">
+    <i aria-hidden="true" class="fa icon-status"
+      [ngClass]="facesMatched ? 'fa-check-circle text-success' : 'fa-exclamation-triangle text-danger'"></i>
+    <p class="lead" [ngClass]="facesMatched ? 'text-success' : 'text-danger'">
+      {{facesMatched ? 'Success! Face has been recognized.' : 'Sorry! Face could not be recognized.'}}
+    </p>
+    <button class="btn btn-link" href="javascript:void(0)" (click)="reset()">Try a new photo to
+      compare</button>
+  </div>
+</div>
+<div *ngIf="progress" class="overlay">
+  <div class="d-flex align-items-center h-100 w-100">
+    <div class="spinner-grow text-dark ml-auto mr-auto" role="status" aria-hidden="true"></div>
+  </div>
+</div>

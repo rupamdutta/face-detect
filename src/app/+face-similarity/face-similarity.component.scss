@@ -1,0 +1,32 @@
+.image-box {
+  border: 1px dashed #aaa;
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  cursor: pointer;
+  margin: auto auto;
+
+  >img {
+    width: 198px;
+    height: 198px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  .spinner-grow {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.icon-status {
+  margin-top: 200px;
+  font-size: 5em;
+}
