@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material';
 
 import { FaceSimilarityRoutingModule } from './face-similarity-routing.module';
 import { FaceSimilarityComponent } from './face-similarity.component';
@@ -10,6 +11,7 @@ import { FaceSimilarityComponent } from './face-similarity.component';
   ],
   imports: [
     CommonModule,
+    MatIconModule,
     FaceSimilarityRoutingModule
   ]
 })

@@ -31,12 +31,13 @@
 </div>
 <div *ngIf="facesMatched!==null">
   <div class="d-flex flex-column align-items-center align-content-center">
-    <i aria-hidden="true" class="fa icon-status"
-      [ngClass]="facesMatched ? 'fa-check-circle text-success' : 'fa-exclamation-triangle text-danger'"></i>
+    <mat-icon class="icon-status" [ngClass]="facesMatched ? 'text-success' : 'text-danger'">
+      {{facesMatched ? 'check_circle' : 'warning'}}
+    </mat-icon>
     <p class="lead" [ngClass]="facesMatched ? 'text-success' : 'text-danger'">
       {{facesMatched ? 'Success! Face has been recognized.' : 'Sorry! Face could not be recognized.'}}
     </p>
-    <button class="btn btn-link" href="javascript:void(0)" (click)="reset()">Try a new photo to
+    <button class="btn btn-link" href="javascript:void(0)" (click)="reset()">Try new photo(s) to
       compare</button>
   </div>
 </div>
