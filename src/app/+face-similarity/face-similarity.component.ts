@@ -54,7 +54,10 @@ export class FaceSimilarityComponent implements OnInit {
 
   async evaluateFaces() {
     this.progress = true;
-    const distance = faceapi.round(faceapi.euclideanDistance(this.descriptors.desc1, this.descriptors.desc2));
+    const
+      euclideanDistance = faceapi.euclideanDistance(this.descriptors.desc1, this.descriptors.desc2),
+      distance = faceapi.round(euclideanDistance);
+    alert('Evaluted: ' + distance);
     this.facesMatched = distance <= this.threshold;
     this.progress = false;
   }
