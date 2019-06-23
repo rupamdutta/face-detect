@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as faceapi from 'face-api.js';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-face-similarity',
@@ -21,7 +22,8 @@ export class FaceSimilarityComponent implements OnInit {
   }
 
   async loadModels() {
-    await faceapi.nets.faceRecognitionNet.loadFromUri('/assets/models/face_recognition');
+    await faceapi.nets.faceRecognitionNet.loadFromUri(
+      environment.baseHref + 'assets/models/face_recognition');
   }
 
   selectImage(filePicker) {

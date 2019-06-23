@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseHref: 'https://rupamdutta.github.io/face-detect/dist/client/'
 };
