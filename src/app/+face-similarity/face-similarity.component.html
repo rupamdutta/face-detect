@@ -5,11 +5,14 @@
         <h1 class="display-4">Original</h1>
         <div class="d-flex align-items-center align-content-center">
           <div class="image-box" (click)="selectImage(img1Select)">
-            <input #img1Select type="file" accept="image/*" hidden (change)="onImageSelect($event,'1',img1Select)" />
-            <img *ngIf="!!descriptors.url1" [src]="descriptors.url1">
+            <input #img1Select type="file" accept="image/*" hidden
+              (change)="onImageSelect($event,'1',img1Select,img1)" />
+            <img #img1>
           </div>
         </div>
-        <p class="lead">Tap to change</p>
+        <p class="lead">Tap to add/change</p>
+        <small class="text-danger" [ngClass]="(!progress&&!!descriptors.url1&&!descriptors.desc1)?'show':'hide'">Face
+          not detected</small>
       </div>
     </div>
     <div class="col-sm-6">
@@ -17,15 +20,19 @@
         <h1 class="display-4">Current</h1>
         <div class="d-flex align-items-center align-content-center">
           <div class="image-box" (click)="selectImage(img2Select)">
-            <input #img2Select type="file" accept="image/*" hidden (change)="onImageSelect($event,'2',img2Select)" />
-            <img *ngIf="!!descriptors.url2" [src]="descriptors.url2">
+            <input #img2Select type="file" accept="image/*" hidden
+              (change)="onImageSelect($event,'2',img2Select,img2)" />
+            <img #img2>
           </div>
         </div>
-        <p class="lead">Tap to change</p>
+        <p class="lead">Tap to add/change</p>
+        <small class="text-danger" [ngClass]="(!progress&&!!descriptors.url2&&!descriptors.desc2)?'show':'hide'">Face
+          not detected</small>
       </div>
     </div>
   </div>
-  <button class="btn btn-lg btn-primary w-100 mb-4" [disabled]="progress||!descriptors.url1||!descriptors.url2"
+  <button class="btn btn-lg btn-primary w-100 mb-4"
+    [disabled]="progress||!descriptors.url1||!descriptors.url2||!descriptors.desc1||!descriptors.desc2"
     (click)="evaluateFaces()">Compare &
     Validate</button>
 </div>
