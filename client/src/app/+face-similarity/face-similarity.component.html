@@ -1,0 +1,55 @@
+<div *ngIf="facesMatched===null">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="jumbotron p-4 text-center">
+        <h1 class="display-4">Original</h1>
+        <div class="d-flex align-items-center align-content-center">
+          <div class="image-box" (click)="selectImage(img1Select)">
+            <input #img1Select type="file" accept="image/*" hidden
+              (change)="onImageSelect($event,'1',img1Select,img1)" />
+            <img #img1>
+          </div>
+        </div>
+        <p class="lead">Tap to add/change</p>
+        <small class="text-danger" [ngClass]="(!progress&&!!descriptors.url1&&!descriptors.desc1)?'show':'hide'">Face
+          not detected</small>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="jumbotron p-4 text-center">
+        <h1 class="display-4">Current</h1>
+        <div class="d-flex align-items-center align-content-center">
+          <div class="image-box" (click)="selectImage(img2Select)">
+            <input #img2Select type="file" accept="image/*" hidden
+              (change)="onImageSelect($event,'2',img2Select,img2)" />
+            <img #img2>
+          </div>
+        </div>
+        <p class="lead">Tap to add/change</p>
+        <small class="text-danger" [ngClass]="(!progress&&!!descriptors.url2&&!descriptors.desc2)?'show':'hide'">Face
+          not detected</small>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-lg btn-primary w-100 mb-4"
+    [disabled]="progress||!descriptors.url1||!descriptors.url2||!descriptors.desc1||!descriptors.desc2"
+    (click)="evaluateFaces()">Compare &
+    Validate</button>
+</div>
+<div *ngIf="facesMatched!==null">
+  <div class="d-flex flex-column align-items-center align-content-center">
+    <mat-icon class="icon-status" [ngClass]="facesMatched ? 'text-success' : 'text-danger'">
+      {{facesMatched ? 'check_circle' : 'warning'}}
+    </mat-icon>
+    <p class="lead" [ngClass]="facesMatched ? 'text-success' : 'text-danger'">
+      {{facesMatched ? 'Success! Face has been recognized.' : 'Sorry! Face could not be recognized.'}}
+    </p>
+    <button class="btn btn-link" href="javascript:void(0)" (click)="reset()">Try new photo(s) to
+      compare</button>
+  </div>
+</div>
+<div *ngIf="progress" class="overlay">
+  <div class="d-flex align-items-center h-100 w-100">
+    <div class="spinner-grow text-dark ml-auto mr-auto" role="status" aria-hidden="true"></div>
+  </div>
+</div>
